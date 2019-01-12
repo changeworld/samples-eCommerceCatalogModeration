@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +27,7 @@ namespace Fusion
         public const string ReviewUri = "https://westus.api.cognitive.microsoft.com/contentmoderator/review/v1.0/teams/YOUR-TEAM-ID/reviews";
         public const string ComputerVisionUri = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze?details=celebrities";
         public const string CustomVisionUri = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/XXXXXXXXXXXXXXXX/url";
-   
+
         public static int _ReviewIndexNext = 2;
 
         static void Main(string[] args)
@@ -137,7 +137,7 @@ namespace Fusion
                 ComputerVisionPrediction CVObject = JsonConvert.DeserializeObject<ComputerVisionPrediction>(Response.Content.ReadAsStringAsync().Result);
 
                 if ((CVObject.categories[0].detail != null) && (CVObject.categories[0].detail.celebrities.Count() > 0))
-                {                 
+                {
                     ReviewTags[2].Value = "true";
                 }
             }
@@ -145,14 +145,14 @@ namespace Fusion
             return Response.IsSuccessStatusCode;
         }
 
-       /// <summary>
-       /// Use Custom Vision API to evaluate for potential content from custom-trained categories 
-       /// </summary>
-       /// <param name="ImageUrl"></param>
-       /// <param name="CustomVisionUri"></param>
-       /// <param name="CustomVisionKey"></param>
-       /// <param name="ReviewTags"></param>
-       /// <returns>API call success or not</returns>
+        /// <summary>
+        /// Use Custom Vision API to evaluate for potential content from custom-trained categories 
+        /// </summary>
+        /// <param name="ImageUrl"></param>
+        /// <param name="CustomVisionUri"></param>
+        /// <param name="CustomVisionKey"></param>
+        /// <param name="ReviewTags"></param>
+        /// <returns>API call success or not</returns>
         public static bool EvaluateCustomVisionTags(string ImageUrl, string CustomVisionUri, string CustomVisionKey, ref KeyValuePair[] ReviewTags)
         {
             var File = ImageUrl;
@@ -464,7 +464,4 @@ namespace Fusion
         public int width { get; set; }
         public int height { get; set; }
     }
-
-
-
 }
